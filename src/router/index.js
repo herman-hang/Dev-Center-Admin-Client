@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 const Login = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Login.vue')
 const Home = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Home.vue')
 const Welcome = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Welcome.vue')
-const System = () => import( /* webpackChunkName: "system"*/ '../views/system/System.vue')
+const System = () => import( /* webpackChunkName: "system_security"*/ '../views/system/System.vue')
+const Security = () => import( /* webpackChunkName: "system_security"*/ '../views/system/Security.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -23,6 +24,9 @@ const routes = [{
   }, {
     path: '/system/system',
     component: System
+  }, {
+    path: '/system/security',
+    component: Security
   }]
 }]
 const router = new VueRouter({
