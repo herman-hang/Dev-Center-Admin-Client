@@ -6,10 +6,8 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 //挂载到原型对象上
 Vue.prototype.$http = axios
-// 获取系统的配置信息
-const serverConfig = window.serverConfig
 //配置请求的根路径
-axios.defaults.baseURL = serverConfig.BASE_API
+axios.defaults.baseURL = window.serverConfig.BASE_API
 //axios请求拦截器，给请求头添加一个Authorization，便于授权验证
 axios.interceptors.request.use(config => {
   //展现进度条
@@ -19,6 +17,19 @@ axios.interceptors.request.use(config => {
 })
 //axios响应拦截器
 axios.interceptors.response.use(config => {
+  if (config.headers.Authorization) {
+    //保存token值
+    window.sessionStorage.setItem('token', config.headers.Authorization);
+  }
+  if (config.data.code === -1) {
+    // 删除token
+    sessionStorage.removeItem('token');
+    // 刷新
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500)
+    // vm.$router.push('/login');
+  }
   //隐藏进度条
   NProgress.done();
   return config;

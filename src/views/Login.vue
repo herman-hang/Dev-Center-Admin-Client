@@ -71,7 +71,9 @@ export default {
     this.isCheckCaptcha();
   },
   methods: {
-    // 登录监听事件
+    /**
+     * 登录监听事件
+     */
     login() {
       // 前端预验证验证码
       const md5 = window.sessionStorage.getItem('md5');
@@ -106,7 +108,9 @@ export default {
         }
       });
     },
-    // 获取验证码
+    /**
+     * 获取验证码
+     */
     async getCaptcha() {
       const { data: res } = await this.$http.get('captcha');
       // 刷新验证码
@@ -118,7 +122,9 @@ export default {
       // 聚焦
       this.$refs.codeInput.focus();
     },
-    // 刷新后判断是否需要输入验证码
+    /**
+     * 刷新后判断是否需要输入验证码,需要则弹出验证码输入框
+     */
     isCheckCaptcha() {
       const chaptcha = window.sessionStorage.getItem('md5');
       if (chaptcha) {
