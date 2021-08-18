@@ -18,11 +18,13 @@
           </el-input>
         </el-form-item>
         <el-form-item label="指定IP地址访问后台" prop="ip"><el-input placeholder="多个ip地址用英文'|'分开" type="textarea" v-model="securityForm.ip"></el-input></el-form-item>
-        <el-form-item label="文件存储区域" prop="file_storage">
-          <el-radio v-model="securityForm.file_storage" label="0">本地</el-radio>
-          <el-radio v-model="securityForm.file_storage" label="1">阿里云</el-radio>
-          <el-radio v-model="securityForm.file_storage" label="2">腾讯云</el-radio>
-          <el-radio v-model="securityForm.file_storage" label="3">七牛云</el-radio>
+        <el-form-item label="文件存储区" prop="file_storage">
+          <el-radio-group v-model="securityForm.file_storage">
+            <el-radio label="0">本地</el-radio>
+            <el-radio label="1">阿里云</el-radio>
+            <el-radio label="2">腾讯云</el-radio>
+            <el-radio label="3">七牛云</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item><el-button type="primary" icon="el-icon-edit" @click="securityEdit">提交</el-button></el-form-item>
       </el-form>
@@ -37,7 +39,10 @@ export default {
       // 表单绑定的数据对象
       securityForm: {},
       // 验证规则
-      securityFormRules: {}
+      securityFormRules: {
+        max_logerror: [{ required: true, message: '请输入允许登录错误次数！', trigger: 'blur' }, { type: 'number', message: '允许登录错误次数必须为数字值！' }],
+        file_storage: [{ required: true, message: '请选择文件存储区域！', trigger: 'change' }]
+      }
     };
   },
   created() {

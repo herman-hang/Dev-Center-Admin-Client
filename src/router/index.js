@@ -5,7 +5,8 @@ const Login = () => import( /* webpackChunkName: "login_home_welcome" */ '../vie
 const Home = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Home.vue')
 const Welcome = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Welcome.vue')
 const System = () => import( /* webpackChunkName: "system_security"*/ '../views/system/System.vue')
-const Security = () => import( /* webpackChunkName: "system_security"*/ '../views/system/Security.vue')
+const Security = () => import( /* webpackChunkName: "system_security_switch"*/ '../views/system/Security.vue')
+const Switch = () => import( /* webpackChunkName: "system_security_switch"*/ '../views/system/Switch.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -27,6 +28,9 @@ const routes = [{
   }, {
     path: '/system/security',
     component: Security
+  }, {
+    path: '/system/switch',
+    component: Switch
   }]
 }]
 const router = new VueRouter({

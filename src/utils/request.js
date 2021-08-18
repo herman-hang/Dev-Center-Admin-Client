@@ -28,7 +28,6 @@ axios.interceptors.response.use(config => {
     setTimeout(() => {
       window.location.reload();
     }, 1500)
-    // vm.$router.push('/login');
   }
   //隐藏进度条
   NProgress.done();
