@@ -78,6 +78,8 @@ export default {
         const { data: res } = await this.$http.put('switchedit', this.switchForm);
         if (res.code !== 200) return this.$message.error(res.msg);
         this.$message.success(res.msg);
+        // 刷新数据
+        this.switch();
       });
     }
   }

@@ -4,9 +4,10 @@ import VueRouter from 'vue-router'
 const Login = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Login.vue')
 const Home = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Home.vue')
 const Welcome = () => import( /* webpackChunkName: "login_home_welcome" */ '../views/Welcome.vue')
-const System = () => import( /* webpackChunkName: "system_security"*/ '../views/system/System.vue')
-const Security = () => import( /* webpackChunkName: "system_security_switch"*/ '../views/system/Security.vue')
-const Switch = () => import( /* webpackChunkName: "system_security_switch"*/ '../views/system/Switch.vue')
+const System = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/System.vue')
+const Security = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Security.vue')
+const Switch = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Switch.vue')
+const Pass = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Pass.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -31,6 +32,9 @@ const routes = [{
   }, {
     path: '/system/switch',
     component: Switch
+  }, {
+    path: '/system/pass',
+    component: Pass
   }]
 }]
 const router = new VueRouter({
