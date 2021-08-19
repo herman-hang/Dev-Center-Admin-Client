@@ -8,6 +8,7 @@ const System = () => import( /* webpackChunkName: "system_security_switch_pass"*
 const Security = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Security.vue')
 const Switch = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Switch.vue')
 const Pass = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Pass.vue')
+const GroupList = () => import( /*webpackChunkName: "group"*/ '../views/group/List.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -35,10 +36,13 @@ const routes = [{
   }, {
     path: '/system/pass',
     component: Pass
+  }, {
+    path: '/group/list',
+    component: GroupList
   }]
 }]
 const router = new VueRouter({
-  mode: 'history', //去掉url中的#号
+  mode: 'history', //去掉url中的'#'号
   routes
 })
 //判断登录状态，挂载路由导航守卫 to:将要访问的路径  from:从那个路径跳转而来  next:放行

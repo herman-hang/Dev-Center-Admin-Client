@@ -42,3 +42,11 @@ body,
 	height: 100px;
 	display: block;
 }
+
+.el-table {
+	margin-top: 10px;
+}
+
+.el-pagination {
+	margin-top: 10px;
+}

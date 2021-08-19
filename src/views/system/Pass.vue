@@ -59,6 +59,7 @@ export default {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.passForm = res.data;
     },
+    
     /**
      * 修改表单数据
      */

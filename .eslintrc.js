@@ -16,6 +16,7 @@ module.exports = {
     'semi': 0,
     'spaced-comment': 0,
     'space-before-function-paren': 0,
-    'space-in-parens':0
+    'space-in-parens': 0,
+    'no-trailing-spaces': 0
   }
 }

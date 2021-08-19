@@ -68,6 +68,7 @@ export default {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.switchForm = res.data;
     },
+    
     /**
      * 修改表单
      */

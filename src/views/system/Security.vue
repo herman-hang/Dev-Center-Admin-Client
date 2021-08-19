@@ -49,13 +49,18 @@ export default {
     this.security();
   },
   methods: {
-    // 获取表单数据
+    /**
+     * 获取表单数据
+     */
     async security() {
       const { data: res } = await this.$http.get('security');
       if (res.code !== 200) return this.$message.error(res.msg);
       this.securityForm = res.data;
     },
-    // 修改表单数据提交
+    
+    /**
+     * 修改表单数据提交
+     */
     securityEdit() {
       this.$refs.securityFormRef.validate(async valid => {
         if (!valid) return;
