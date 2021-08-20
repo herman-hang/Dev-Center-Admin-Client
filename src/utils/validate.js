@@ -105,10 +105,10 @@ export function validEmail(rule, value, callback) {
     //放行
     callback();
   } else {
-    if (!reg.test(value)) && value !== '') {
-    callback(new Error('请输入正确的邮箱'));
-  } else {
-    callback();
+    if ((!reg.test(value)) && value !== '') {
+      callback(new Error('请输入正确的邮箱'));
+    } else {
+      callback();
+    }
   }
-}
 }

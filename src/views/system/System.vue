@@ -129,7 +129,7 @@ export default {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.systemForm = res.data;
     },
-    
+
     /**
      * 监听修改系统设置数据绑定事件
      */
@@ -144,7 +144,7 @@ export default {
         this.system();
       });
     },
-    
+
     /**
      * 网站LOGO上传成功时的钩子
      * @param {Object} res 返回数据
@@ -153,8 +153,9 @@ export default {
     handleAvatarSuccessLogo(res, file) {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.systemForm.logo = res.data[0];
+      this.$message.success(res.msg);
     },
-    
+
     /**
      * 网站ICO上传成功时的钩子
      * @param {Object} res 返回数据
@@ -163,8 +164,9 @@ export default {
     handleAvatarSuccessIco(res, file) {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.systemForm.ico = res.data[0];
+      this.$message.success(res.msg);
     },
-    
+
     /**
      * 网站公众号上传成功时的钩子
      * @param {Object} res 返回数据
@@ -173,8 +175,9 @@ export default {
     handleAvatarSuccessTuomaogz(res, file) {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.systemForm.tuomaogz = res.data[0];
+      this.$message.success(res.msg);
     },
-    
+
     /**
      * 上传文件之前的钩子
      * @param {Object} file 上传的文件

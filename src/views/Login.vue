@@ -69,6 +69,14 @@ export default {
   created() {
     // 调用判断是否需要输入验证码方法
     this.isCheckCaptcha();
+    // 回车进行登录
+    var self = this;
+    document.onkeydown = function(e) {
+      var key = window.event.keyCode;
+      if (key === 13) {
+        self.login();
+      }
+    };
   },
   methods: {
     /**

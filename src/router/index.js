@@ -9,6 +9,7 @@ const Security = () => import( /* webpackChunkName: "system_security_switch_pass
 const Switch = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Switch.vue')
 const Pass = () => import( /* webpackChunkName: "system_security_switch_pass"*/ '../views/system/Pass.vue')
 const GroupList = () => import( /*webpackChunkName: "group"*/ '../views/group/List.vue')
+const AdminList = () => import( /*webpackChunkName: "admin"*/ '../views/admin/List.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -39,6 +40,9 @@ const routes = [{
   }, {
     path: '/group/list',
     component: GroupList
+  }, {
+    path: '/admin/list',
+    component: AdminList
   }]
 }]
 const router = new VueRouter({

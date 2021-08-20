@@ -3,7 +3,7 @@
     <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>系统管理</el-breadcrumb-item>
+      <el-breadcrumb-item>管理员管理</el-breadcrumb-item>
       <el-breadcrumb-item>权限组列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片视图 -->
@@ -17,8 +17,9 @@
           </el-col>
         </el-row>
       </div>
+      <!-- 添加删除按钮组 -->
       <el-row>
-        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addDialog" size="mini">添加</el-button>
+        <el-button type="primary" icon="el-icon-plus" @click="addDialog" size="mini">添加</el-button>
         <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteClick()">删除</el-button>
       </el-row>
       <!-- 列表表格 -->
@@ -91,7 +92,9 @@
         <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
           <el-form-item label="权限组名称" prop="name"><el-input v-model="editForm.name"></el-input></el-form-item>
           <el-form-item label="权限组描述" prop="instruction"><el-input type="textarea" v-model="editForm.instruction"></el-input></el-form-item>
-          <el-form-item label="选择权限" prop="rules"><el-tree :data="editForm.children" ref="editTree" show-checkbox node-key="id" :props="addEditProps"></el-tree></el-form-item>
+          <el-form-item label="选择权限" prop="children">
+            <el-tree :data="editForm.children" ref="editTree" show-checkbox node-key="id" :props="addEditProps"></el-tree>
+          </el-form-item>
         </el-form>
         <!-- 底部按钮 -->
         <span slot="footer" class="dialog-footer">
@@ -151,6 +154,14 @@ export default {
   },
   created() {
     this.groupList();
+    // 回车进行搜索
+    var self = this;
+    document.onkeydown = function(e) {
+      var key = window.event.keyCode;
+      if (key === 13) {
+        self.groupList();
+      }
+    };
   },
   methods: {
     /**
@@ -188,6 +199,9 @@ export default {
     deleteClick(id = '') {
       if (id !== '') {
         this.deleteId = id;
+      }
+      if (this.deleteId === '' || this.deleteId === undefined || this.deleteId == null) {
+        return this.$message.warning('请选中需要删除的数据！');
       }
       // 确认消息
       this.$confirm('是否继续删除?', '提示', {
@@ -262,27 +276,25 @@ export default {
 
     /**
      * 编辑内容
-     * @param {Object} row
+     * @param {Object} id
      */
     async editDialog(id) {
       // 调用根据权限组ID查询数据方法
       const { data: res } = await this.$http.get(`group/query/id/${id}`);
       if (res.code !== 200) return this.$message.error(res.msg);
       this.editForm = res.data;
-      // 显示编辑对话框
-      this.editDialogVisible = true;
       // 勾选拥有的权限
       setTimeout(() => {
         this.$refs.editTree.setCheckedKeys(this.editForm.rules);
       }, 500);
+      // 显示编辑对话框
+      this.editDialogVisible = true;
     },
 
     /**
      * 提交编辑的数据
      */
     submitEdit() {
-      // 关闭编辑对话框
-      this.editDialogVisible = false;
       this.$refs.editFormRef.validate(async valid => {
         // 数据验证失败
         if (!valid) return;
@@ -293,6 +305,8 @@ export default {
         const { data: res } = await this.$http.put('group/edit', form);
         if (res.code !== 200) return this.$message.error(res.msg);
         this.$message.success(res.msg);
+        // 关闭编辑对话框
+        this.editDialogVisible = false;
         // 刷新列表
         this.groupList();
       });
@@ -329,15 +343,16 @@ export default {
      * 添加提交
      */
     submitAdd() {
-      // 关闭添加对话框
-      this.addDialogVisible = false;
       // 发起添加请求
-      this.addForm.rules = this.$refs.addTree.getCheckedKeys().join(',');
+      this.addForm.rules = this.$refs.addTree.getCheckedKeys();
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) return;
+        this.addForm.rules = this.$refs.addTree.getCheckedKeys().join(',');
         const { data: res } = await this.$http.post('group/add', this.addForm);
         if (res.code !== 201) return this.$message.error(res.msg);
         this.$message.success(res.msg);
+        // 关闭添加对话框
+        this.addDialogVisible = false;
         // 刷新列表
         this.groupList();
       });
