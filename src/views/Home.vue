@@ -40,7 +40,7 @@
         <!-- 右上角按钮组 -->
         <div class="btn-array">
           <el-button target="_blank" @click="toPath" type="primary" size="mini" icon="el-icon-s-promotion">前台首页</el-button>
-          <el-button type="success" size="mini" icon="el-icon-refresh">清除缓冲</el-button>
+          <el-button type="success" size="mini" icon="el-icon-refresh" @click="clear">清除缓冲</el-button>
           <el-button type="danger" size="mini" icon="el-icon-switch-button" @click="logout">退出登录</el-button>
         </div>
       </el-header>
@@ -129,6 +129,14 @@ export default {
      */
     toPath() {
       window.open(window.serverConfig.APP_INDEX_URL, '_blank');
+    },
+    /**
+     * 清除缓存
+     */
+    async clear() {
+      const { data: res } = await this.$http.post('clear');
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.$message.success(res.msg);
     }
   }
 };

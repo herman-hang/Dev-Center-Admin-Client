@@ -26,6 +26,12 @@
             <el-radio label="3">七牛云</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="短信接口" prop="sms_type">
+          <el-radio-group v-model="securityForm.sms_type">
+            <el-radio label="0">ThinkAPI</el-radio>
+            <el-radio label="1">短信宝</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item><el-button type="primary" icon="el-icon-edit" @click="securityEdit">提交</el-button></el-form-item>
       </el-form>
     </el-card>
@@ -41,7 +47,8 @@ export default {
       // 验证规则
       securityFormRules: {
         max_logerror: [{ required: true, message: '请输入允许登录错误次数！', trigger: 'blur' }, { type: 'number', message: '允许登录错误次数必须为数字值！' }],
-        file_storage: [{ required: true, message: '请选择文件存储区域！', trigger: 'change' }]
+        file_storage: [{ required: true, message: '请选择文件存储区域！', trigger: 'change' }],
+        sms_type: [{ required: true, message: '请选择短信接口！', trigger: 'change' }]
       }
     };
   },
@@ -57,7 +64,7 @@ export default {
       if (res.code !== 200) return this.$message.error(res.msg);
       this.securityForm = res.data;
     },
-    
+
     /**
      * 修改表单数据提交
      */
