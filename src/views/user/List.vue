@@ -30,6 +30,7 @@
         <el-table-column prop="photo" label="头像" width="100" height="100">
           <template slot-scope="scope">
             <img width="80" v-if="scope.row.photo" :src="scope.row.photo" alt="头像" />
+            <img width="80" v-else src="../../assets/image/default.png" alt="头像" />
           </template>
         </el-table-column>
         <el-table-column prop="nickname" label="昵称" width="180"></el-table-column>

@@ -14,18 +14,21 @@
           <el-tab-pane label="QQ登录" name="qq">
             <el-form-item label="QQ appid" prop="qq_appid"><el-input placeholder="请输入QQ appid" v-model="thirdpartyForm.qq_appid"></el-input></el-form-item>
             <el-form-item label="QQ secret" prop="sign_id"><el-input placeholder="请输入QQ secret" v-model="thirdpartyForm.qq_secret"></el-input></el-form-item>
+            <el-form-item label="QQ回调地址" prop="qq_callback"><el-input v-model="thirdpartyForm.qq_callback" :disabled="true"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
           <el-tab-pane label="微信登录" name="weixin">
             <el-form-item label="微信appid" prop="wx_appid"><el-input placeholder="请输入微信appid" v-model="thirdpartyForm.wx_appid"></el-input></el-form-item>
             <el-form-item label="微信secret" prop="wx_secret"><el-input placeholder="请输入微信secret" v-model="thirdpartyForm.wx_secret"></el-input></el-form-item>
+            <el-form-item label="微信回调地址" prop="wx_callback"><el-input v-model="thirdpartyForm.wx_callback" :disabled="true"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
           <el-tab-pane label="微博登录" name="weibo">
             <el-form-item label="微博appid" prop="weibo_appid"><el-input placeholder="请输入微博appid" v-model="thirdpartyForm.weibo_appid"></el-input></el-form-item>
             <el-form-item label="微博secret" prop="weibo_secret"><el-input placeholder="请输入微博secret" v-model="thirdpartyForm.weibo_secret"></el-input></el-form-item>
+            <el-form-item label="微博回调地址" prop="weibo_callback"><el-input v-model="thirdpartyForm.weibo_callback" :disabled="true"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
@@ -55,9 +58,14 @@ export default {
      * 获取表单数据
      */
     async thirdparty() {
+      console.log(this.thirdpartyForm);
       const { data: res } = await this.$http.get('thirdparty');
       if (res.code !== 200) return this.$message.error(res.msg);
       this.thirdpartyForm = res.data;
+      const BASE_API = window.serverConfig.BASE_API;
+      this.thirdpartyForm.qq_callback = BASE_API + 'oauth/callback/' + 'qq';
+      this.thirdpartyForm.wx_callback = BASE_API + 'oauth/callback/' + 'weixin';
+      this.thirdpartyForm.weibo_callback = BASE_API + 'oauth/callback/' + 'sina';
     },
 
     /**
