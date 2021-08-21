@@ -8,6 +8,18 @@
     </el-breadcrumb>
     <!-- 卡片视图 -->
     <el-card>
+      <div slot="header" class="clearfix">
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <el-input placeholder="请输入搜索内容" v-model="optQueryInfo.keywords" clearable @clear="log('2')" v-if="activeName === 'opt_log'">
+              <el-button slot="append" icon="el-icon-search" @click="log('2')"></el-button>
+            </el-input>
+            <el-input placeholder="请输入搜索内容" v-model="loginQueryInfo.keywords" clearable @clear="log('1')" v-else>
+              <el-button slot="append" icon="el-icon-search" @click="log('1')"></el-button>
+            </el-input>
+          </el-col>
+        </el-row>
+      </div>
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="操作日志" name="opt_log">
           <el-table :data="optData" border style="width: 100%">
@@ -100,10 +112,22 @@ export default {
   },
   created() {
     this.log('2');
+    // 回车进行搜索
+    var self = this;
+    document.onkeydown = function(e) {
+      var key = window.event.keyCode;
+      if (key === 13) {
+        if (self.activeName === 'opt_log') {
+          self.log('2');
+        } else {
+          self.log('1');
+        }
+      }
+    };
   },
   methods: {
     /**
-     * 获取表单数据
+     * 获取列表数据
      * @param {Object} type 日志类型（1为操作日志，2为登录日志）
      */
     async log(type) {

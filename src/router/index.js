@@ -15,6 +15,8 @@ const Sms = () => import( /*webpackChunkName: "pay_sms_thirdparty_email"*/ '../v
 const Thirdparty = () => import( /*webpackChunkName: "pay_sms_thirdparty_email"*/ '../views/functional/Thirdparty.vue')
 const Email = () => import( /*webpackChunkName: "pay_sms_thirdparty_email"*/ '../views/functional/Email.vue')
 const AdminLog = () => import( /*webpackChunkName: "adminlog"*/ '../views/adminlog/List.vue')
+const User = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/BuyLog.vue')
+const UserList = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/List.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -63,6 +65,12 @@ const routes = [{
   }, {
     path: '/adminlog/list',
     component: AdminLog
+  }, {
+    path: '/user/buylog',
+    component: User
+  }, {
+    path: '/user/list',
+    component: UserList
   }]
 }]
 const router = new VueRouter({
