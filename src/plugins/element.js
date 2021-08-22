@@ -40,7 +40,8 @@ import {
   Checkbox,
   Upload,
   Radio,
-  RadioGroup
+  RadioGroup,
+  DatePicker
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Form)
@@ -81,6 +82,7 @@ Vue.use(Checkbox)
 Vue.use(Upload)
 Vue.use(Radio)
 Vue.use(RadioGroup)
+Vue.use(DatePicker)
 // 挂载在vue原型对象上
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

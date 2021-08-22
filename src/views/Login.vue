@@ -18,6 +18,13 @@
           </div>
         </el-form-item>
         <el-form-item class="btn"><el-button type="primary" @click="login">登录</el-button></el-form-item>
+        <el-form-item class="btn">
+          <a href="javascript:;" @click="oauthLogin('weixin')" title="微信登录"><img width="30" src="../assets/image/login/weixin.png" alt="微信登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('qq')" title="QQ登录"><img width="30" src="../assets/image/login/qq.png" alt="QQ登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('weibo')" title="微博登录"><img width="30" src="../assets/image/login/weibo.png" alt="微博登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('gitee')" title="Gitee登录"><img width="30" src="../assets/image/login/gitee.png" alt="Gitee登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('github')" title="GitHub登录"><img width="30" src="../assets/image/login/github.png" alt="GitHub登录" /></a>
+        </el-form-item>
       </el-form>
     </div>
   </div>
@@ -32,6 +39,14 @@ export default {
         user: 'admin',
         password: '123456',
         code: ''
+      },
+      // 第三方登录绑定
+      bindLogin: {
+        qq: window.serverConfig.BASE_API + 'oauth/login/type/' + 'qq',
+        weixin: window.serverConfig.BASE_API + 'oauth/login/type/' + 'weixin',
+        weibo: window.serverConfig.BASE_API + 'oauth/login/type/' + 'sina',
+        gitee: window.serverConfig.BASE_API + 'oauth/login/type/' + 'gitee',
+        github: window.serverConfig.BASE_API + 'oauth/login/type/' + 'github'
       },
       //表单数据验证
       loginFormRules: {
@@ -116,6 +131,7 @@ export default {
         }
       });
     },
+
     /**
      * 获取验证码
      */
@@ -130,6 +146,7 @@ export default {
       // 聚焦
       this.$refs.codeInput.focus();
     },
+
     /**
      * 刷新后判断是否需要输入验证码,需要则弹出验证码输入框
      */
@@ -139,6 +156,43 @@ export default {
         this.getCaptcha();
         this.captchaShow = true;
       }
+    },
+
+    /**
+     * 第三方登录
+     */
+    oauthLogin(type) {
+      switch (type) {
+        case 'weixin':
+          window.open(this.bindLogin.weixin);
+          break;
+        case 'qq':
+          window.open(this.bindLogin.qq);
+          break;
+        case 'weibo':
+          window.open(this.bindLogin.weibo);
+          break;
+        case 'gitee':
+          window.open(this.bindLogin.gitee);
+          break;
+        case 'github':
+          window.open(this.bindLogin.github);
+          break;
+        default:
+          this.$message.error('请求错误！');
+      }
+      // 通过监听，父页面可以拿到子页面传递的token
+      window.addEventListener(
+        'message',
+        function(e) {
+          const token = window.sessionStorage.getItem('token', e.data);
+          if (token === '' || token === undefined || token === null) {
+            window.sessionStorage.setItem('token', e.data);
+          }
+          window.location.reload();
+        },
+        false
+      );
     }
   }
 };
@@ -187,6 +241,9 @@ export default {
   margin-top: 50px;
   .el-button {
     width: 200px;
+  }
+  a {
+    margin: 3px;
   }
 }
 .code {

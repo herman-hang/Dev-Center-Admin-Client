@@ -18,6 +18,7 @@ const AdminLog = () => import( /*webpackChunkName: "adminlog"*/ '../views/adminl
 const User = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/BuyLog.vue')
 const UserList = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/List.vue')
 const NoticeList = () => import( /*webpackChunkName: "notice"*/ '../views/notice/List.vue')
+const AdvertisingList = () => import( /*webpackChunkName: "advertising"*/ '../views/advertising/List.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -75,6 +76,9 @@ const routes = [{
   }, {
     path: '/notice/list',
     component: NoticeList
+  }, {
+    path: '/advertising/list',
+    component: AdvertisingList
   }]
 }]
 const router = new VueRouter({

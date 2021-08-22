@@ -32,6 +32,20 @@
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
+          <el-tab-pane label="Gitee登录" name="gitee">
+            <el-form-item label="Gitee appid" prop="gitee_appid"><el-input placeholder="请输入Gitee appid" v-model="thirdpartyForm.gitee_appid"></el-input></el-form-item>
+            <el-form-item label="Gitee secret" prop="gitee_secret"><el-input placeholder="请输入Gitee secret" v-model="thirdpartyForm.gitee_secret"></el-input></el-form-item>
+            <el-form-item label="Gitee回调地址" prop="gitee_callback"><el-input v-model="thirdpartyForm.gitee_callback" :disabled="true"></el-input></el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
+          <el-tab-pane label="Github登录" name="github">
+            <el-form-item label="Github appid" prop="github_appid"><el-input placeholder="请输入Github appid" v-model="thirdpartyForm.github_appid"></el-input></el-form-item>
+            <el-form-item label="Github secret" prop="github_secret"><el-input placeholder="请输入Github secret" v-model="thirdpartyForm.github_secret"></el-input></el-form-item>
+            <el-form-item label="Github回调地址" prop="github_callback"><el-input v-model="thirdpartyForm.github_callback" :disabled="true"></el-input></el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>
@@ -58,14 +72,15 @@ export default {
      * 获取表单数据
      */
     async thirdparty() {
-      console.log(this.thirdpartyForm);
       const { data: res } = await this.$http.get('thirdparty');
       if (res.code !== 200) return this.$message.error(res.msg);
       this.thirdpartyForm = res.data;
       const BASE_API = window.serverConfig.BASE_API;
-      this.thirdpartyForm.qq_callback = BASE_API + 'oauth/callback/' + 'qq';
-      this.thirdpartyForm.wx_callback = BASE_API + 'oauth/callback/' + 'weixin';
-      this.thirdpartyForm.weibo_callback = BASE_API + 'oauth/callback/' + 'sina';
+      this.thirdpartyForm.qq_callback = BASE_API + 'oauth/callback/type/' + 'qq';
+      this.thirdpartyForm.wx_callback = BASE_API + 'oauth/callback/type/' + 'weixin';
+      this.thirdpartyForm.weibo_callback = BASE_API + 'oauth/callback/type/' + 'sina';
+      this.thirdpartyForm.gitee_callback = BASE_API + 'oauth/callback/type/' + 'gitee';
+      this.thirdpartyForm.github_callback = BASE_API + 'oauth/callback/type/' + 'github';
     },
 
     /**

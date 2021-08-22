@@ -72,7 +72,7 @@
       <!-- 发布对话框 -->
       <el-dialog title="发布公告" :visible.sync="addDialogVisible" width="50%" @close="addFormClose">
         <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
-          <el-form-item label="标题" prop="title"><el-input placeholder="请输入标题" v-model="addForm.title" maxlength="64"></el-input></el-form-item>
+          <el-form-item label="标题" prop="title"><el-input placeholder="请输入标题" v-model="addForm.title"></el-input></el-form-item>
           <el-form-item autosize label="内容" prop="content"><el-input placeholder="请输入公告内容" type="textarea" v-model="addForm.content"></el-input></el-form-item>
           <el-form-item label="落款" prop="inscribe"><el-input placeholder="请输入公告落款" v-model="addForm.inscribe" maxlength="64"></el-input></el-form-item>
         </el-form>
@@ -85,7 +85,7 @@
       <!-- 编辑对话框 -->
       <el-dialog title="编辑公告" :visible.sync="editDialogVisible" width="50%" @close="editFormClose">
         <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-          <el-form-item label="标题" prop="title"><el-input placeholder="请输入标题" v-model="editForm.title" maxlength="64"></el-input></el-form-item>
+          <el-form-item label="标题" prop="title"><el-input placeholder="请输入标题" v-model="editForm.title"></el-input></el-form-item>
           <el-form-item autosize label="内容" prop="content"><el-input placeholder="请输入公告内容" type="textarea" v-model="editForm.content"></el-input></el-form-item>
           <el-form-item label="落款" prop="inscribe"><el-input placeholder="请输入公告落款" v-model="editForm.inscribe" maxlength="64"></el-input></el-form-item>
         </el-form>
