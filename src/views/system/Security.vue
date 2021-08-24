@@ -26,6 +26,14 @@
             <el-radio label="3">七牛云</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="图片存储区" prop="images_storage">
+          <el-radio-group v-model="securityForm.images_storage">
+            <el-radio label="0">本地</el-radio>
+            <el-radio label="1">阿里云</el-radio>
+            <el-radio label="2">腾讯云</el-radio>
+            <el-radio label="3">七牛云</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item><el-button type="primary" icon="el-icon-edit" @click="securityEdit">提交</el-button></el-form-item>
       </el-form>
     </el-card>
@@ -42,6 +50,7 @@ export default {
       securityFormRules: {
         max_logerror: [{ required: true, message: '请输入允许登录错误次数！', trigger: 'blur' }, { type: 'number', message: '允许登录错误次数必须为数字值！' }],
         file_storage: [{ required: true, message: '请选择文件存储区域！', trigger: 'change' }],
+        images_storage: [{ required: true, message: '请选择图片存储区域！', trigger: 'change' }],
         sms_type: [{ required: true, message: '请选择短信接口！', trigger: 'change' }]
       }
     };

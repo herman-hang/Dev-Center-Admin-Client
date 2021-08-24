@@ -14,10 +14,13 @@ import './utils/request.js'
 import './utils/filter.js'
 // 加载MD5加密算法
 import md5 from 'js-md5';
+// 富文本编辑器
+import mavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
+Vue.use(mavonEditor)
 // 挂载到vue原型上
 Vue.prototype.$md5 = md5;
 Vue.config.productionTip = false
-
 new Vue({
   router,
   render: h => h(App)

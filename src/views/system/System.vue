@@ -50,8 +50,8 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
-        <el-form-item label="网站公众号" prop="tuomaogz">
-          <!-- 网站公众号上传 -->
+        <el-form-item label="微信公众号" prop="tuomaogz">
+          <!-- 微信公众号上传 -->
           <el-upload
             accept=".jpg,.jpeg,.png,.bmp"
             class="avatar-uploader"
