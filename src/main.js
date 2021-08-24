@@ -17,6 +17,11 @@ import md5 from 'js-md5';
 // 富文本编辑器
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
+// 预防xss攻击
+import xss from 'xss'
+Object.defineProperty(Vue.prototype, '$xss', {
+  value: xss
+})
 Vue.use(mavonEditor)
 // 挂载到vue原型上
 Vue.prototype.$md5 = md5;
