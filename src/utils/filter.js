@@ -18,10 +18,10 @@ Vue.filter('timestamp', function(originVal) {
   //日
   const d = (dt.getDay() + '').padStart(2, '0');
   //时
-  const hh = (dt.getHours() + '').padStart(2, '0');
-  //分
-  const mm = (dt.getMinutes() + '').padStart(2, '0');
-  //秒
-  const ss = (dt.getSeconds() + '').padStart(2, '0');
-  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+  /*  const hh = (dt.getHours() + '').padStart(2, '0');
+    //分
+    const mm = (dt.getMinutes() + '').padStart(2, '0');
+    //秒
+    const ss = (dt.getSeconds() + '').padStart(2, '0'); */
+  return `${y}-${m}-${d}`;
 })

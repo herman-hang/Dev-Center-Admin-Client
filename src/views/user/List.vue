@@ -229,7 +229,8 @@ export default {
       // 添加表单数据绑定对象
       addForm: {
         passwords: '',
-        photo: ''
+        photo: '',
+        age: ''
       },
       // 编辑表单数据绑定对象
       editForm: {
@@ -450,7 +451,7 @@ export default {
     },
 
     /**
-     * 添加对话框关闭
+     * 发布对话框关闭
      */
     addFormClose() {
       // 重置所有表单项

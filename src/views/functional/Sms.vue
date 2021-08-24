@@ -35,6 +35,16 @@
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
+          <el-tab-pane label="选择接口" name="select">
+            <el-form-item label="接口类型" prop="sms_type">
+              <el-radio-group v-model="smsForm.sms_type">
+                <el-radio label="0">ThinkAPI</el-radio>
+                <el-radio label="1">短信宝</el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>

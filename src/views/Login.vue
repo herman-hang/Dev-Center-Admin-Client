@@ -19,11 +19,16 @@
         </el-form-item>
         <el-form-item class="btn"><el-button type="primary" @click="login">登录</el-button></el-form-item>
         <el-form-item class="btn">
-          <a href="javascript:;" @click="oauthLogin('weixin')" title="微信登录"><img width="30" src="../assets/image/login/weixin.png" alt="微信登录" /></a>
-          <a href="javascript:;" @click="oauthLogin('qq')" title="QQ登录"><img width="30" src="../assets/image/login/qq.png" alt="QQ登录" /></a>
-          <a href="javascript:;" @click="oauthLogin('weibo')" title="微博登录"><img width="30" src="../assets/image/login/weibo.png" alt="微博登录" /></a>
-          <a href="javascript:;" @click="oauthLogin('gitee')" title="Gitee登录"><img width="30" src="../assets/image/login/gitee.png" alt="Gitee登录" /></a>
-          <a href="javascript:;" @click="oauthLogin('github')" title="GitHub登录"><img width="30" src="../assets/image/login/github.png" alt="GitHub登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('weixin')" title="微信登录" v-show="switchForm.qqlogin_switch">
+            <img width="30" src="../assets/image/login/weixin.png" alt="微信登录" />
+          </a>
+          <a href="javascript:;" @click="oauthLogin('qq')" title="QQ登录" v-show="switchForm.weixinlogin_switch"><img width="30" src="../assets/image/login/qq.png" alt="QQ登录" /></a>
+          <a href="javascript:;" @click="oauthLogin('weibo')" title="微博登录" v-show="switchForm.sinalogin_switch">
+            <img width="30" src="../assets/image/login/weibo.png" alt="微博登录" />
+          </a>
+          <a href="javascript:;" @click="oauthLogin('gitee')" title="Gitee登录" v-show="switchForm.giteelogin_switch">
+            <img width="30" src="../assets/image/login/gitee.png" alt="Gitee登录" />
+          </a>
         </el-form-item>
       </el-form>
     </div>
@@ -78,12 +83,16 @@ export default {
         ]
       },
       // 控制验证码显示与隐藏
-      captchaShow: false
+      captchaShow: false,
+      // 控制快捷登录的显示与隐藏
+      switchForm: {}
     };
   },
   created() {
     // 调用判断是否需要输入验证码方法
     this.isCheckCaptcha();
+    // 调用获取快捷登录开关
+    this.getSwitch();
     // 回车进行登录
     var self = this;
     document.onkeydown = function(e) {
@@ -185,14 +194,25 @@ export default {
       window.addEventListener(
         'message',
         function(e) {
-          const token = window.sessionStorage.getItem('token', e.data);
-          if (token === '' || token === undefined || token === null) {
-            window.sessionStorage.setItem('token', e.data);
+          if (e.data !== '' && e.data.constructor !== Object) {
+            const token = window.sessionStorage.getItem('token', e.data);
+            if (token === '' || token === undefined || token === null) {
+              window.sessionStorage.setItem('token', e.data);
+            }
+            window.location.reload();
           }
-          window.location.reload();
         },
         false
       );
+    },
+
+    /**
+     * 快捷登录开关获取
+     */
+    async getSwitch() {
+      const { data: res } = await this.$http.get('getswitch');
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.switchForm = res.data;
     }
   }
 };

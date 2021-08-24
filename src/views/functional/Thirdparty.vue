@@ -39,13 +39,6 @@
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
-          <el-tab-pane label="Github登录" name="github">
-            <el-form-item label="Github appid" prop="github_appid"><el-input placeholder="请输入Github appid" v-model="thirdpartyForm.github_appid"></el-input></el-form-item>
-            <el-form-item label="Github secret" prop="github_secret"><el-input placeholder="请输入Github secret" v-model="thirdpartyForm.github_secret"></el-input></el-form-item>
-            <el-form-item label="Github回调地址" prop="github_callback"><el-input v-model="thirdpartyForm.github_callback" :disabled="true"></el-input></el-form-item>
-            <!-- 提交按钮 -->
-            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
-          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>

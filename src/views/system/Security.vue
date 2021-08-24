@@ -26,12 +26,6 @@
             <el-radio label="3">七牛云</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="短信接口" prop="sms_type">
-          <el-radio-group v-model="securityForm.sms_type">
-            <el-radio label="0">ThinkAPI</el-radio>
-            <el-radio label="1">短信宝</el-radio>
-          </el-radio-group>
-        </el-form-item>
         <el-form-item><el-button type="primary" icon="el-icon-edit" @click="securityEdit">提交</el-button></el-form-item>
       </el-form>
     </el-card>

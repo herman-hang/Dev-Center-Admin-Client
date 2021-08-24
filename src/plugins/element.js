@@ -41,7 +41,8 @@ import {
   Upload,
   Radio,
   RadioGroup,
-  DatePicker
+  DatePicker,
+  Loading
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Form)
@@ -83,6 +84,8 @@ Vue.use(Upload)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(DatePicker)
+Vue.use(Loading)
 // 挂载在vue原型对象上
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$prompt = MessageBox.prompt

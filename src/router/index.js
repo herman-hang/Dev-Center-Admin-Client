@@ -19,6 +19,9 @@ const User = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/Bu
 const UserList = () => import( /*webpackChunkName: "list_buylog"*/ '../views/user/List.vue')
 const NoticeList = () => import( /*webpackChunkName: "notice"*/ '../views/notice/List.vue')
 const AdvertisingList = () => import( /*webpackChunkName: "advertising"*/ '../views/advertising/List.vue')
+const DeveloperList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../views/developer/List.vue')
+const AuditList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../views/developer/AuditList.vue')
+const WithdrawList = () => import( /*webpackChunkName: "withdrawlist"*/ '../views/withdraw/List.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -79,6 +82,15 @@ const routes = [{
   }, {
     path: '/advertising/list',
     component: AdvertisingList
+  }, {
+    path: '/developer/list',
+    component: DeveloperList
+  }, {
+    path: '/developer/auditList',
+    component: AuditList
+  }, {
+    path: '/withdraw/list',
+    component: WithdrawList
   }]
 }]
 const router = new VueRouter({
