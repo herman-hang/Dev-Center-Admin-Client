@@ -13,7 +13,7 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-input placeholder="请输入内容" v-model="queryInfo.keywords" clearable @clear="app">
-              <el-select class="selete" v-model="queryInfo.type" slot="prepend" placeholder="请选择" @click="app">
+              <el-select class="select" v-model="queryInfo.type" slot="prepend" placeholder="请选择" @click="app">
                 <el-option label="全部" value=""></el-option>
                 <el-option label="插件" value="0"></el-option>
                 <el-option label="模板" value="1"></el-option>
@@ -62,16 +62,17 @@
         <el-table-column prop="status" label="状态">
           <template slot-scope="scope">
             <el-tag type="success" v-if="scope.row.status === '2'">已发布</el-tag>
+            <el-tag type="danger" v-else-if="scope.row.status === '0'">已下架</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="create_time" label="发布时间" width="180">
+        <el-table-column prop="create_time" label="发布时间">
           <template slot-scope="scope">
             {{ scope.row.create_time | date }}
           </template>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-tooltip :enterable="false" effect="dark" content="下架" placement="top" v-if="scope.row.status === '1'">
+            <el-tooltip :enterable="false" effect="dark" content="下架" placement="top" v-if="scope.row.status === '2'">
               <el-button type="danger" icon="el-icon-remove-outline" size="mini" @click="statusEdit(scope.row)"></el-button>
             </el-tooltip>
             <el-tooltip :enterable="false" effect="dark" content="发布" placement="top" v-else>
@@ -311,6 +312,7 @@ export default {
      */
     submitAdd() {
       this.$refs.addFormRef.validate(async valid => {
+        if (!valid) return;
         const { data: res } = await this.$http.post('app/add', this.addForm);
         if (res.code !== 201) return this.$message.error(res.msg);
         this.$message.success(res.msg);
@@ -340,7 +342,7 @@ export default {
         if (!valid) return;
         // 免费则重置付费金额为空
         if (this.editForm.is_pay === '0') {
-          this.editForm.money = 0.00;
+          this.editForm.money = 0.0;
         }
         const { data: res } = await this.$http.put('app/edit', this.editForm);
         if (res.code !== 200) return this.$message.error(res.msg);
@@ -428,8 +430,8 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          let status = '1';
-          if (row.status === '1') {
+          let status = '2';
+          if (row.status === '2') {
             status = '0';
           }
           // 发起请求
@@ -533,7 +535,7 @@ export default {
       formdata.append('image', $file);
       const { data: res } = await this.$http.post(this.updateUrl, formdata);
       if (res.code !== 200) return this.$message.error(res.msg);
-      var $vm = this.$refs.addEditorRef.md;
+      var $vm = this.$refs.addEditorRef;
       $vm.$img2Url(pos, res.data[0]);
     },
 
@@ -547,7 +549,7 @@ export default {
       formdata.append('image', $file);
       const { data: res } = await this.$http.post(this.updateUrl, formdata);
       if (res.code !== 200) return this.$message.error(res.msg);
-      var $vm = this.$refs.EditEditorRef.md;
+      var $vm = this.$refs.EditEditorRef;
       $vm.$img2Url(pos, res.data[0]);
     }
   }
@@ -555,7 +557,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.selete {
+.select {
   width: 80px;
 }
 </style>

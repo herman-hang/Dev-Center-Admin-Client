@@ -17,7 +17,7 @@ import md5 from 'js-md5';
 // 富文本编辑器
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
-// 预防xss攻击
+// 预防xss攻击，使用教程http://www.zlxvip.cn/index.php/archives/6/
 import xss from 'xss'
 Object.defineProperty(Vue.prototype, '$xss', {
   value: xss

@@ -23,6 +23,7 @@ const DeveloperList = () => import( /*webpackChunkName: "developer_auditlist"*/ 
 const AuditList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../views/developer/AuditList.vue')
 const WithdrawList = () => import( /*webpackChunkName: "withdrawlist"*/ '../views/withdraw/List.vue')
 const AppList = () => import( /*webpackChunkName: "applist"*/ '../views/app/List.vue')
+const AppAuditList = () => import( /*webpackChunkName: "applist_auditlist"*/ '../views/app/AuditList.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -95,6 +96,9 @@ const routes = [{
   }, {
     path: '/app/list',
     component: AppList
+  }, {
+    path: '/app/auditlist',
+    component: AppAuditList
   }]
 }]
 const router = new VueRouter({
