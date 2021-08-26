@@ -381,6 +381,7 @@ export default {
         this.userList();
       });
     },
+
     /**
      * 删除
      */
@@ -451,7 +452,7 @@ export default {
     },
 
     /**
-     * 发布对话框关闭
+     * 添加对话框关闭
      */
     addFormClose() {
       // 重置所有表单项
