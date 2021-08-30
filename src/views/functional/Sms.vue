@@ -62,7 +62,9 @@ export default {
         phone: ''
       },
       // 表单验证规则
-      smsFormRules: {}
+      smsFormRules: {
+        sms_type: [{ required: true, message: '请选择短信接口类型', trigger: 'change' }]
+      }
     };
   },
   created() {

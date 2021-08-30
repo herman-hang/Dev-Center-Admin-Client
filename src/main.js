@@ -7,7 +7,7 @@ import '../public/config.js'
 // 导入全局样式表
 import './assets/css/global.css'
 // 导入字体图标
-// import './assets/icons/iconfont.css'
+import './assets/icons/iconfont.css'
 // 请求拦截器和响应器
 import './utils/request.js'
 // 时间过滤器

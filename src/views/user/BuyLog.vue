@@ -34,6 +34,7 @@
             <el-tag v-else>续费</el-tag>
           </template>
         </el-table-column>
+        <el-table-column prop="money" label="金额(单位:元)"></el-table-column>
         <el-table-column prop="pay_type" label="支付类型">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.pay_type === '0'">微信支付</el-tag>

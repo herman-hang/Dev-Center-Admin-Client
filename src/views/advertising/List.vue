@@ -197,7 +197,13 @@ export default {
       },
       // 发布广告表单数据绑定对象
       addForm: {
-        type: '1'
+        type: '1',
+        name: '',
+        img: '',
+        url: '',
+        status: '',
+        star_time: '',
+        end_time: ''
       },
       // 发布广告表单验证规则
       addFormRules: {

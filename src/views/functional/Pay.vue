@@ -19,14 +19,6 @@
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
-          <el-tab-pane label="微信支付" name="wxpay">
-            <el-form-item label="微信商户号" prop="wxpay_mchid"><el-input placeholder="请输入微信商户号" v-model="payForm.wxpay_mchid"></el-input></el-form-item>
-            <el-form-item label="微信商户KEY" prop="wxpay_key"><el-input placeholder="请输入微信商户KEY" v-model="payForm.wxpay_key"></el-input></el-form-item>
-            <el-form-item label="AppID" prop="wxpay_appid"><el-input placeholder="请输入公众号AppID" v-model="payForm.wxpay_appid"></el-input></el-form-item>
-            <el-form-item label="AppSecret" prop="wxpay_secret"><el-input placeholder="请输入公众号AppSecret" v-model="payForm.wxpay_secret"></el-input></el-form-item>
-            <!-- 提交按钮 -->
-            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
-          </el-tab-pane>
           <el-tab-pane label="当面付" name="alif2f">
             <el-form-item label="当面付AppID" prop="alipayf2f_private_id">
               <el-input placeholder="请输入当面付AppID" v-model="payForm.alipayf2f_private_id"></el-input>
@@ -35,6 +27,14 @@
               <el-input placeholder="请输入当面付私钥" v-model="payForm.alipayf2f_private_key"></el-input>
             </el-form-item>
             <el-form-item label="当面付公钥" prop="alipayf2f_public_key"><el-input placeholder="请输入当面付私钥" v-model="payForm.alipayf2f_public_key"></el-input></el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
+          <el-tab-pane label="微信支付" name="wxpay">
+            <el-form-item label="微信商户号" prop="wxpay_mchid"><el-input placeholder="请输入微信商户号" v-model="payForm.wxpay_mchid"></el-input></el-form-item>
+            <el-form-item label="微信商户KEY" prop="wxpay_key"><el-input placeholder="请输入微信商户KEY" v-model="payForm.wxpay_key"></el-input></el-form-item>
+            <el-form-item label="AppID" prop="wxpay_appid"><el-input placeholder="请输入公众号AppID" v-model="payForm.wxpay_appid"></el-input></el-form-item>
+            <el-form-item label="AppSecret" prop="wxpay_secret"><el-input placeholder="请输入公众号AppSecret" v-model="payForm.wxpay_secret"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
@@ -51,6 +51,16 @@
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
+          <el-tab-pane label="支付宝接口" name="alipay_type">
+            <el-form-item label="接口类型" prop="alipay_type">
+              <el-radio-group v-model="payForm.alipay_type">
+                <el-radio label="0">官方支付</el-radio>
+                <el-radio label="1">当面付</el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>
@@ -64,7 +74,9 @@ export default {
       // 设置标签页默认选中
       activeName: 'alipay',
       // 表单验证规则
-      payFormRules: {},
+      payFormRules: {
+        alipay_type: [{ required: true, message: '请选择支付宝支付类型', trigger: 'change' }]
+      },
       // 表单数据绑定对象
       payForm: {}
     };

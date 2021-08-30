@@ -9,7 +9,7 @@
     <!-- 卡片视图 -->
     <el-card>
       <div slot="header" class="clearfix"><strong>第三方登录配置</strong></div>
-      <el-form :model="thirdpartyForm" :rules="thirdpartyFormRules" ref="thirdpartyFormRef" label-width="100px">
+      <el-form :model="thirdpartyForm" :rules="thirdpartyFormRules" ref="thirdpartyFormRef" label-width="110px">
         <el-tabs v-model="activeName" tab-position="left">
           <el-tab-pane label="QQ登录" name="qq">
             <el-form-item label="QQ appid" prop="qq_appid"><el-input placeholder="请输入QQ appid" v-model="thirdpartyForm.qq_appid"></el-input></el-form-item>

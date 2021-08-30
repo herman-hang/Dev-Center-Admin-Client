@@ -118,11 +118,13 @@ export default {
     /**
      * 退出登录
      */
-    logout() {
+    async logout() {
+      const { data: res } = await this.$http.post('loginOut');
+      if (res.code !== 200) return this.$message.error(res.msg);
       // 删除token
       sessionStorage.removeItem('token');
       this.$router.push('/login');
-      this.$message.success('退出成功！');
+      this.$message.success(res.msg);
     },
     /**
      * 跳转到前台

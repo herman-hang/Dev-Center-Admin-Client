@@ -109,7 +109,7 @@
               <el-option label="保密" value="2"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="年龄" prop="age"><el-input placeholder="请输入年龄" v-model="addForm.age"></el-input></el-form-item>
+          <el-form-item label="年龄" prop="age"><el-input placeholder="请输入年龄" v-model.number="addForm.age"></el-input></el-form-item>
           <el-form-item label="地址" prop="region"><el-input placeholder="请输入地址" v-model="addForm.region"></el-input></el-form-item>
           <el-form-item label="手机号码" prop="mobile"><el-input placeholder="请输入手机号码" v-model="addForm.mobile"></el-input></el-form-item>
           <el-form-item label="邮箱" prop="email"><el-input placeholder="请输入邮箱" v-model="addForm.email"></el-input></el-form-item>
@@ -166,7 +166,7 @@
               <el-option label="保密" value="2"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="年龄" prop="age"><el-input placeholder="请输入年龄" v-model="editForm.age"></el-input></el-form-item>
+          <el-form-item label="年龄" prop="age"><el-input placeholder="请输入年龄" v-model.number="editForm.age"></el-input></el-form-item>
           <el-form-item label="地址" prop="region"><el-input placeholder="请输入地址" v-model="editForm.region"></el-input></el-form-item>
           <el-form-item label="手机号码" prop="mobile"><el-input placeholder="请输入手机号码" v-model="editForm.mobile"></el-input></el-form-item>
           <el-form-item label="邮箱" prop="email"><el-input placeholder="请输入邮箱" v-model="editForm.email"></el-input></el-form-item>
@@ -228,9 +228,22 @@ export default {
       editDialogVisible: false,
       // 添加表单数据绑定对象
       addForm: {
+        user: '',
         passwords: '',
+        password: '',
+        nickname: '',
         photo: '',
-        age: ''
+        name: '',
+        card: '',
+        sex: '',
+        age: '',
+        region: '',
+        mobile: '',
+        email: '',
+        qq: '',
+        introduction: '',
+        status: '',
+        is_developer: ''
       },
       // 编辑表单数据绑定对象
       editForm: {
@@ -247,9 +260,10 @@ export default {
         ],
         card: [{ validator: validateIdNo, trigger: 'blur' }],
         sex: [{ required: true, message: '请选择性别', trigger: 'change' }],
-        age: [{ min: 0, max: 120, message: '年龄只能是0到120岁之间', trigger: 'blur' }],
+        age: [{ type: 'number', min: 0, max: 120, message: '年龄只能是0到120岁之间', trigger: 'blur' }],
         mobile: [{ validator: validatePhone, trigger: 'blur' }],
         email: [{ validator: validEmail, trigger: 'blur' }],
+        qq: [{ min: 5, max: 11, message: 'QQ号只能是5到11位之间', trigger: 'blur' }],
         status: [{ required: true, message: '请选择状态', trigger: 'change' }],
         is_developer: [{ required: true, message: '请选择是否成为开发者', trigger: 'change' }]
       },
@@ -259,9 +273,10 @@ export default {
         password: [{ min: 6, max: 15, message: '密码只能是6到15位之间', trigger: 'blur' }],
         card: [{ validator: validateIdNo, trigger: 'blur' }],
         sex: [{ required: true, message: '请选择性别', trigger: 'change' }],
-        age: [{ min: 0, max: 120, message: '年龄只能是0到120岁之间', trigger: 'blur' }],
+        age: [{ type: 'number', min: 0, max: 120, message: '年龄只能是0到120岁之间', trigger: 'blur' }],
         mobile: [{ validator: validatePhone, trigger: 'blur' }],
         email: [{ validator: validEmail, trigger: 'blur' }],
+        qq: [{ min: 5, max: 11, message: 'QQ号只能是5到11位之间', trigger: 'blur' }],
         status: [{ required: true, message: '请选择状态', trigger: 'change' }],
         is_developer: [{ required: true, message: '请选择是否成为开发者', trigger: 'change' }]
       },

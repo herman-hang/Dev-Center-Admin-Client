@@ -242,8 +242,15 @@ export default {
       editDialogVisible: false,
       // 发布应用表单数据绑定
       addForm: {
+        type: '',
+        name: '',
         img: '',
-        zip: ''
+        is_pay: '',
+        zip: '',
+        money: '',
+        author: '',
+        status: '',
+        introduce: ''
       },
       // 编辑应用表单数据绑定
       editForm: {},
@@ -313,6 +320,10 @@ export default {
     submitAdd() {
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) return;
+        // 免费则重置付费金额为空
+        if (this.addForm.is_pay === '0') {
+          this.addForm.money = 0.0;
+        }
         const { data: res } = await this.$http.post('app/add', this.addForm);
         if (res.code !== 201) return this.$message.error(res.msg);
         this.$message.success(res.msg);

@@ -24,8 +24,10 @@ const AuditList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../
 const WithdrawList = () => import( /*webpackChunkName: "withdrawlist"*/ '../views/withdraw/List.vue')
 const AppList = () => import( /*webpackChunkName: "applist"*/ '../views/app/List.vue')
 const AppAuditList = () => import( /*webpackChunkName: "applist_auditlist"*/ '../views/app/AuditList.vue')
-const AuthorizationList = () => import( /*webpackChunkName: "authorizationlist_piratelist"*/
+const AuthorizationList = () => import( /*webpackChunkName: "authorizationlist_piratelist_config"*/
   '../views/authorization/List.vue')
+const AuthConfig = () => import( /*webpackChunkName: "authorizationlist_piratelist_config"*/
+  '../views/authorization/AuthConfig.vue')
 const PirateList = () => import( /*webpackChunkName: "authorizationlist_piratelist"*/
   '../views/pirate/List.vue')
 const upgradeList = () => import( /*webpackChunkName: "upgradelist"*/ '../views/upgrade/List.vue')
@@ -113,6 +115,9 @@ const routes = [{
   }, {
     path: '/upgrade/list',
     component: upgradeList
+  }, {
+    path: '/authorization/authconfig',
+    component: AuthConfig
   }]
 }]
 const router = new VueRouter({

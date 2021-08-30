@@ -17,11 +17,12 @@ axios.interceptors.request.use(config => {
 })
 //axios响应拦截器
 axios.interceptors.response.use(config => {
-  if (config.headers.Authorization) {
+  if (config.headers.authorization !== null && config.headers.authorization !== undefined && config.headers
+    .authorization !== '') {
     //保存token值
-    window.sessionStorage.setItem('token', config.headers.Authorization);
+    window.sessionStorage.setItem('token', config.headers.authorization);
   }
-  if (config.data.code === -1) {
+  if (config.data.code === 0) {
     // 删除token
     sessionStorage.removeItem('token');
     // 刷新

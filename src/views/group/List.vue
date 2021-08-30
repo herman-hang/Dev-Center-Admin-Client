@@ -143,7 +143,12 @@ export default {
         rules: [{ required: true, message: '请选择权限！', trigger: 'change' }]
       },
       // 添加表单
-      addForm: {},
+      addForm: {
+        name: '',
+        instruction: '',
+        status: '',
+        rules: ''
+      },
       // 添加表单验证规则
       addFormRules: {
         name: [{ required: true, message: '请输入权限组名称！', trigger: 'blur' }],
@@ -332,11 +337,11 @@ export default {
      * 添加
      */
     async addDialog() {
-      // 显示添加对话框
-      this.addDialogVisible = true;
       const { data: res } = await this.$http.get('group/query');
       if (res.code !== 200) return this.$message.error(res.msg);
       this.addForm = res.data;
+      // 显示添加对话框
+      this.addDialogVisible = true;
     },
 
     /**

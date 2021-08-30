@@ -18,6 +18,7 @@
           </el-input>
         </el-form-item>
         <el-form-item label="指定IP地址访问后台" prop="ip"><el-input placeholder="多个ip地址用英文'|'分开" type="textarea" v-model="securityForm.ip"></el-input></el-form-item>
+        <el-form-item label="后台入口" prop="access"><el-input placeholder="请输入新的后台入口地址" v-model="securityForm.access"></el-input></el-form-item>
         <el-form-item label="文件存储区" prop="file_storage">
           <el-radio-group v-model="securityForm.file_storage">
             <el-radio label="0">本地</el-radio>
@@ -48,10 +49,10 @@ export default {
       securityForm: {},
       // 验证规则
       securityFormRules: {
-        max_logerror: [{ required: true, message: '请输入允许登录错误次数！', trigger: 'blur' }, { type: 'number', message: '允许登录错误次数必须为数字值！' }],
+        max_logerror: [{ required: true, message: '请输入允许登录错误次数！', trigger: 'blur' }],
         file_storage: [{ required: true, message: '请选择文件存储区域！', trigger: 'change' }],
-        images_storage: [{ required: true, message: '请选择图片存储区域！', trigger: 'change' }],
-        sms_type: [{ required: true, message: '请选择短信接口！', trigger: 'change' }]
+        access: [{ required: true, message: '请输入新的后台入口地址！', trigger: 'blur' }],
+        images_storage: [{ required: true, message: '请选择图片存储区域！', trigger: 'change' }]
       }
     };
   },

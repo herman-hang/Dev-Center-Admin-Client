@@ -190,7 +190,13 @@ export default {
       },
       // 发布表单数据绑定
       addForm: {
-        wgt_url: ''
+        title: '',
+        version: '',
+        type: '',
+        way: '',
+        wgt_url: '',
+        status: '',
+        content: ''
       },
       // 发布表单验证规则
       addFormRules: {

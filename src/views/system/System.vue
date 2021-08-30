@@ -11,6 +11,7 @@
       <div slot="header" class="clearfix"><strong>系统设置</strong></div>
       <el-form :model="systemForm" :rules="systemRules" ref="systemRef" label-width="100px">
         <el-form-item label="网站名称" prop="name"><el-input placeholder="请输入网站名称,一般不超过20字符" v-model="systemForm.name"></el-input></el-form-item>
+        <el-form-item label="网站域名" prop="domain"><el-input placeholder="请输入网站域名" v-model="systemForm.domain"></el-input></el-form-item>
         <el-form-item label="网站标题" prop="title"><el-input placeholder="请输入网站标题,一般不超过50字符" v-model="systemForm.title"></el-input></el-form-item>
         <el-form-item label="网站描述" prop="description">
           <el-input placeholder="请输入网站描述,一般不超过200字符" type="textarea" v-model="systemForm.description"></el-input>
@@ -67,6 +68,7 @@
           </el-upload>
         </el-form-item>
         <el-form-item label="邮箱" prop="email"><el-input placeholder="请输入邮箱" v-model="systemForm.email"></el-input></el-form-item>
+        <el-form-item label="QQ" prop="qq"><el-input placeholder="请输入QQ号" v-model="systemForm.qq"></el-input></el-form-item>
         <el-form-item label="QQ群号" prop="usergroup"><el-input placeholder="请输入QQ群号" v-model="systemForm.usergroup"></el-input></el-form-item>
         <el-form-item label="电话" prop="phone"><el-input placeholder="请输入电话" v-model="systemForm.phone"></el-input></el-form-item>
         <el-form-item label="网站开关" prop="is_website">
@@ -85,29 +87,21 @@
   </div>
 </template>
 <script>
+import { validEmail, validatePhoneTwo } from '@/utils/validate.js';
 export default {
   data() {
     return {
       // 系统设置绑定的表单对象
       systemForm: {
-        name: '',
-        title: '',
-        description: '',
-        keywords: '',
         logo: '',
         ico: '',
-        tuomaogz: '',
-        email: '',
-        usergroup: '',
-        phone: '',
-        is_website: '1',
-        record: '',
-        copyright: '',
-        statistical: ''
+        tuomaogz: ''
       },
       // 表单验证规则
       systemRules: {
-        is_website: [{ required: true, message: '请选择网站开关', trigger: 'blur' }]
+        is_website: [{ required: true, message: '请选择网站开关', trigger: 'blur' }],
+        email: [{ validator: validEmail, trigger: 'blur' }],
+        phone: [{ validator: validatePhoneTwo, trigger: 'blur' }]
       },
       // 上传图片URL
       updateUrl: window.serverConfig.BASE_API + 'base/upload',

@@ -109,7 +109,8 @@ export default {
       editForm: {},
       // 编辑表单验证规则
       editFormRules: {
-        brokerage: [{ required: true, message: '请填写服务费', trigger: 'blur' }]
+        brokerage: [{ required: true, message: '请填写服务费', trigger: 'blur' }],
+        level: [{ required: true, message: '请选择开发者等级', trigger: 'change' }]
       }
     };
   },

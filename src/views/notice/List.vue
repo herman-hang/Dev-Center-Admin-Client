@@ -74,7 +74,13 @@
         <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
           <el-form-item label="标题" prop="title"><el-input placeholder="请输入标题" v-model="addForm.title"></el-input></el-form-item>
           <el-form-item autosize label="内容" prop="content"><el-input placeholder="请输入公告内容" type="textarea" v-model="addForm.content"></el-input></el-form-item>
-          <el-form-item label="落款" prop="inscribe"><el-input placeholder="请输入公告落款" v-model="addForm.inscribe" maxlength="64"></el-input></el-form-item>
+          <el-form-item label="落款" prop="inscribe"><el-input placeholder="请输入公告落款" v-model="addForm.inscribe"></el-input></el-form-item>
+          <el-form-item label="状态" prop="status">
+            <el-select v-model="addForm.status" placeholder="请选择状态">
+              <el-option label="已发布" value="1"></el-option>
+              <el-option label="已下架" value="0"></el-option>
+            </el-select>
+          </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
@@ -120,12 +126,18 @@ export default {
       // 发布公告对话框初始化
       addDialogVisible: false,
       // 发布表单绑定的数据对象
-      addForm: {},
+      addForm: {
+        title: '',
+        content: '',
+        inscribe: '',
+        status: ''
+      },
       // 发布表单的验证规则
       addFormRules: {
         title: [{ required: true, message: '请输入标题', trigger: 'blur' }, { min: 0, max: 64, message: '标题长度只能在 0 到 64 个字符', trigger: 'blur' }],
         content: [{ required: true, message: '请输入内容', trigger: 'blur' }],
-        inscribe: [{ required: true, message: '请输入落款', trigger: 'blur' }]
+        inscribe: [{ required: true, message: '请输入落款', trigger: 'blur' }, { min: 0, max: 50, message: '落款长度只能在 0 到 64 个字符', trigger: 'blur' }],
+        status: [{ required: true, message: '请选择状态', trigger: 'change' }]
       },
       // 编辑表单数据绑定对象
       editForm: {},
@@ -133,7 +145,7 @@ export default {
       editFormRules: {
         title: [{ required: true, message: '请输入标题', trigger: 'blur' }, { min: 0, max: 64, message: '标题长度只能在 0 到 64 个字符', trigger: 'blur' }],
         content: [{ required: true, message: '请输入内容', trigger: 'blur' }],
-        inscribe: [{ required: true, message: '请输入落款', trigger: 'blur' }]
+        inscribe: [{ required: true, message: '请输入落款', trigger: 'blur' }, { min: 0, max: 50, message: '落款长度只能在 0 到 64 个字符', trigger: 'blur' }]
       },
       // 编辑对话框初始化
       editDialogVisible: false

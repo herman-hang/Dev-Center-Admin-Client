@@ -31,6 +31,14 @@
         <el-table-column prop="domain_one" label="授权域名1"></el-table-column>
         <el-table-column prop="domain_two" label="授权域名2"></el-table-column>
         <el-table-column prop="domain_tree" label="授权域名3"></el-table-column>
+        <el-table-column prop="level" label="授权服务">
+          <template slot-scope="scope">
+            <span v-if="scope.row.level === '0'">铁牌</span>
+            <span v-else-if="scope.row.level === '1'">铜牌</span>
+            <span v-else-if="scope.row.level === '2'">银牌</span>
+            <span v-else>金牌</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="create_time" label="授权时间">
           <template slot-scope="scope">
             {{ scope.row.create_time | date }}
@@ -87,6 +95,14 @@
               <el-option label="封禁" value="0"></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="授权服务" prop="level">
+            <el-select v-model="addForm.level" placeholder="请选择授权服务">
+              <el-option label="铁牌" value="0"></el-option>
+              <el-option label="铜牌" value="1"></el-option>
+              <el-option label="银牌" value="2"></el-option>
+              <el-option label="金牌" value="3"></el-option>
+            </el-select>
+          </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
@@ -104,6 +120,14 @@
           <el-form-item label="授权域名2" prop="domain_two"><el-input placeholder="请输入授权域名2" v-model="editForm.domain_two"></el-input></el-form-item>
           <el-form-item label="授权域名3" prop="domain_tree"><el-input placeholder="请输入授权域名3" v-model="editForm.domain_tree"></el-input></el-form-item>
           <el-form-item label="用户ID" prop="user_id"><el-input placeholder="请输入绑定的用户ID" v-model="editForm.user_id"></el-input></el-form-item>
+          <el-form-item label="授权服务" prop="level">
+            <el-select v-model="editForm.level" placeholder="请选择授权服务">
+              <el-option label="铁牌" value="0"></el-option>
+              <el-option label="铜牌" value="1"></el-option>
+              <el-option label="银牌" value="2"></el-option>
+              <el-option label="金牌" value="3"></el-option>
+            </el-select>
+          </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
@@ -139,14 +163,23 @@ export default {
       // 编辑对话框初始化
       editDialogVisible: false,
       // 添加授权站点表单绑定数据对象
-      addForm: {},
+      addForm: {
+        name: '',
+        ip: '',
+        domain_one: '',
+        domain_two: '',
+        domain_tree: '',
+        status: '',
+        level: ''
+      },
       // 添加授权站点表单验证规则
       addFormRules: {
         name: [{ required: true, message: '请输入授权站名称', trigger: 'blur' }],
         ip: [{ required: true, message: '请输入授权IP地址', trigger: 'blur' }, { validator: validateIP, trigger: 'blur' }],
         domain_one: [{ required: true, message: '请输入授权域名1', trigger: 'blur' }],
         user_id: [{ required: true, message: '请输入用户ID', trigger: 'blur' }],
-        status: [{ required: true, message: '请选择状态', trigger: 'change' }]
+        status: [{ required: true, message: '请选择状态', trigger: 'change' }],
+        level: [{ required: true, message: '请选择选择授权服务', trigger: 'change' }]
       },
       // 编辑授权站点表单数据绑定对象
       editForm: {},
@@ -155,7 +188,8 @@ export default {
         name: [{ required: true, message: '请输入授权站名称', trigger: 'blur' }],
         ip: [{ required: true, message: '请输入授权IP地址', trigger: 'blur' }, { validator: validateIP, trigger: 'blur' }],
         domain_one: [{ required: true, message: '请输入授权域名1', trigger: 'blur' }],
-        user_id: [{ required: true, message: '请输入用户ID', trigger: 'blur' }]
+        user_id: [{ required: true, message: '请输入用户ID', trigger: 'blur' }],
+        level: [{ required: true, message: '请选择选择授权服务', trigger: 'change' }]
       }
     };
   },

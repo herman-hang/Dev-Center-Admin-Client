@@ -29,7 +29,17 @@
             {{ scope.row.create_time | date }}
           </template>
         </el-table-column>
-        <el-table-column label="操作"></el-table-column>
+        <el-table-column label="操作">
+          <template>
+            <el-tooltip :enterable="false" effect="dark" content="获取后台登录信息" placement="top">
+              <el-button type="success" icon="el-icon-tickets" size="mini"></el-button>
+            </el-tooltip>
+            <el-tooltip :enterable="false" effect="dark" content="备份代码" placement="top">
+              <el-button type="primary" icon="el-icon-document-copy" size="mini"></el-button>
+            </el-tooltip>
+            <el-tooltip :enterable="false" effect="dark" content="执行删除" placement="top"><el-button type="danger" icon="el-icon-delete" size="mini"></el-button></el-tooltip>
+          </template>
+        </el-table-column>
       </el-table>
 
       <!-- 分页 -->
