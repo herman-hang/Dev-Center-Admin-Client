@@ -13,28 +13,25 @@
       <el-form :model="payForm" :rules="payFormRules" ref="payFormRef" label-width="100px">
         <el-tabs v-model="activeName" tab-position="left">
           <el-tab-pane label="支付宝支付" name="alipay">
-            <el-form-item label="支付宝AppID" prop="alipay_private_id"><el-input placeholder="请输入支付宝AppID" v-model="payForm.alipay_private_id"></el-input></el-form-item>
-            <el-form-item label="支付宝私钥" prop="alipay_private_key"><el-input placeholder="请输入支付宝私钥" v-model="payForm.alipay_private_key"></el-input></el-form-item>
+            <el-form-item label="AppID" prop="alipay_private_id"><el-input placeholder="请输入支付宝AppID" v-model="payForm.alipay_private_id"></el-input></el-form-item>
+            <el-form-item label="应用私钥" prop="alipay_private_key"><el-input placeholder="请输入应用私钥" v-model="payForm.alipay_private_key"></el-input></el-form-item>
             <el-form-item label="支付宝公钥" prop="alipay_public_key"><el-input placeholder="请输入支付宝公钥" v-model="payForm.alipay_public_key"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
           <el-tab-pane label="当面付" name="alif2f">
-            <el-form-item label="当面付AppID" prop="alipayf2f_private_id">
-              <el-input placeholder="请输入当面付AppID" v-model="payForm.alipayf2f_private_id"></el-input>
+            <el-form-item label="AppID" prop="alipayf2f_private_id"><el-input placeholder="请输入当面付AppID" v-model="payForm.alipayf2f_private_id"></el-input></el-form-item>
+            <el-form-item label="应用私钥" prop="alipayf2f_private_key">
+              <el-input placeholder="请输入当面付应用私钥" v-model="payForm.alipayf2f_private_key"></el-input>
             </el-form-item>
-            <el-form-item label="当面付私钥" prop="alipayf2f_private_key">
-              <el-input placeholder="请输入当面付私钥" v-model="payForm.alipayf2f_private_key"></el-input>
-            </el-form-item>
-            <el-form-item label="当面付公钥" prop="alipayf2f_public_key"><el-input placeholder="请输入当面付私钥" v-model="payForm.alipayf2f_public_key"></el-input></el-form-item>
+            <el-form-item label="支付宝公钥" prop="alipayf2f_public_key"><el-input placeholder="请输入支付宝公钥" v-model="payForm.alipayf2f_public_key"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
           <el-tab-pane label="微信支付" name="wxpay">
             <el-form-item label="微信商户号" prop="wxpay_mchid"><el-input placeholder="请输入微信商户号" v-model="payForm.wxpay_mchid"></el-input></el-form-item>
             <el-form-item label="微信商户KEY" prop="wxpay_key"><el-input placeholder="请输入微信商户KEY" v-model="payForm.wxpay_key"></el-input></el-form-item>
-            <el-form-item label="AppID" prop="wxpay_appid"><el-input placeholder="请输入公众号AppID" v-model="payForm.wxpay_appid"></el-input></el-form-item>
-            <el-form-item label="AppSecret" prop="wxpay_secret"><el-input placeholder="请输入公众号AppSecret" v-model="payForm.wxpay_secret"></el-input></el-form-item>
+            <el-form-item label="公众号AppID" prop="wxpay_appid"><el-input placeholder="请输入应用AppID" v-model="payForm.wxpay_appid"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>

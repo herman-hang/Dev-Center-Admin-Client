@@ -50,8 +50,7 @@ export default {
         qq: window.serverConfig.BASE_API + 'oauth/login/type/' + 'qq',
         weixin: window.serverConfig.BASE_API + 'oauth/login/type/' + 'weixin',
         weibo: window.serverConfig.BASE_API + 'oauth/login/type/' + 'sina',
-        gitee: window.serverConfig.BASE_API + 'oauth/login/type/' + 'gitee',
-        github: window.serverConfig.BASE_API + 'oauth/login/type/' + 'github'
+        gitee: window.serverConfig.BASE_API + 'oauth/login/type/' + 'gitee'
       },
       //表单数据验证
       loginFormRules: {
@@ -258,7 +257,7 @@ export default {
 .btn {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
   .el-button {
     width: 200px;
   }

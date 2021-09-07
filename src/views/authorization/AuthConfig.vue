@@ -18,6 +18,9 @@
             </template>
           </el-input>
         </el-form-item>
+        <el-form-item label="铜牌服务内容" prop="copper_server_content">
+          <el-input :rows="5" type="textarea" placeholder="请输入铜牌享受的服务内容" v-model="authConfigForm.copper_server_content"></el-input>
+        </el-form-item>
         <el-form-item label="银牌授权费" prop="silver">
           <el-input type="number" placeholder="请输入银牌授权费" v-model="authConfigForm.silver">
             <template slot="append">
@@ -25,8 +28,35 @@
             </template>
           </el-input>
         </el-form-item>
+        <el-form-item label="银牌服务内容" prop="silver_server_content">
+          <el-input :rows="5" type="textarea" placeholder="请输入银牌享受的服务内容" v-model="authConfigForm.silver_server_content"></el-input>
+        </el-form-item>
         <el-form-item label="金牌授权费" prop="gold">
           <el-input type="number" placeholder="请输入金牌授权费" v-model="authConfigForm.gold">
+            <template slot="append">
+              元
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="金牌服务内容" prop="gold_server_content">
+          <el-input :rows="5" type="textarea" placeholder="请输入金牌享受的服务内容" v-model="authConfigForm.gold_server_content"></el-input>
+        </el-form-item>
+        <el-form-item label="铁牌升级铜牌" prop="iron_copper">
+          <el-input type="number" placeholder="请输入铁牌升级铜牌费用" v-model="authConfigForm.iron_copper">
+            <template slot="append">
+              元
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="铁牌升级银牌" prop="iron_silver">
+          <el-input type="number" placeholder="请输入铁牌升级银牌费用" v-model="authConfigForm.iron_silver">
+            <template slot="append">
+              元
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="铁牌升级金牌" prop="iron_gold">
+          <el-input type="number" placeholder="请输入铁牌升级金牌" v-model="authConfigForm.iron_gold">
             <template slot="append">
               元
             </template>

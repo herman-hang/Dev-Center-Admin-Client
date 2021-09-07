@@ -149,7 +149,7 @@
           </el-form-item>
           <el-form-item label="应用介绍" prop="introduce">
             <!-- 富文本编辑器 -->
-            <mavon-editor @imgAdd="$imgAdd" ref="addEditorRef" v-model="addForm.introduce"></mavon-editor>
+            <mavon-editor :boxShadow="false" @imgAdd="$imgAdd" ref="addEditorRef" v-model="addForm.introduce"></mavon-editor>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -203,7 +203,7 @@
           </el-form-item>
           <el-form-item label="应用介绍" prop="introduce">
             <!-- 富文本编辑器 -->
-            <mavon-editor @imgAdd="$imgEdit" ref="EditEditorRef" v-model="editForm.introduce"></mavon-editor>
+            <mavon-editor :boxShadow="false" @imgAdd="$imgEdit" ref="EditEditorRef" v-model="editForm.introduce"></mavon-editor>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">

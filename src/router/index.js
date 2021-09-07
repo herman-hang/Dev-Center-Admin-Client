@@ -20,7 +20,9 @@ const UserList = () => import( /*webpackChunkName: "list_buylog"*/ '../views/use
 const NoticeList = () => import( /*webpackChunkName: "notice"*/ '../views/notice/List.vue')
 const AdvertisingList = () => import( /*webpackChunkName: "advertising"*/ '../views/advertising/List.vue')
 const DeveloperList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../views/developer/List.vue')
-const AuditList = () => import( /*webpackChunkName: "developer_auditlist"*/ '../views/developer/AuditList.vue')
+const AuditList = () => import( /*webpackChunkName: "developer_auditlist_config"*/ '../views/developer/AuditList.vue')
+const DeveloperConfig = () => import( /*webpackChunkName: "developer_auditlist_config"*/
+  '../views/developer/DeveloperConfig.vue')
 const WithdrawList = () => import( /*webpackChunkName: "withdrawlist"*/ '../views/withdraw/List.vue')
 const AppList = () => import( /*webpackChunkName: "applist"*/ '../views/app/List.vue')
 const AppAuditList = () => import( /*webpackChunkName: "applist_auditlist"*/ '../views/app/AuditList.vue')
@@ -31,6 +33,7 @@ const AuthConfig = () => import( /*webpackChunkName: "authorizationlist_pirateli
 const PirateList = () => import( /*webpackChunkName: "authorizationlist_piratelist"*/
   '../views/pirate/List.vue')
 const upgradeList = () => import( /*webpackChunkName: "upgradelist"*/ '../views/upgrade/List.vue')
+const Error404 = () => import( /* webpackChunkName: "login_register_password" */ '../views/404.vue')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -98,6 +101,9 @@ const routes = [{
     path: '/developer/auditList',
     component: AuditList
   }, {
+    path: '/developer/developerConfig',
+    component: DeveloperConfig
+  }, {
     path: '/withdraw/list',
     component: WithdrawList
   }, {
@@ -119,6 +125,12 @@ const routes = [{
     path: '/authorization/authconfig',
     component: AuthConfig
   }]
+}, {
+  path: '/404',
+  component: Error404
+}, {
+  path: '*',
+  redirect: '/404'
 }]
 const router = new VueRouter({
   mode: 'history', //去掉url中的'#'号
@@ -136,7 +148,9 @@ router.beforeEach((to, from, next) => {
     return next();
   }
   if (!token) {
-    return next('/login');
+    if (to.path !== '/404') {
+      return next('/login');
+    }
   }
   next();
 });

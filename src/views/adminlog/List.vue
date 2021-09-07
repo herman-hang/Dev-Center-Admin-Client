@@ -132,12 +132,12 @@ export default {
      */
     async log(type) {
       if (type === '2') {
-        const { data: res } = await this.$http.get('adminlog/list', { params: this.optQueryInfo });
+        const { data: res } = await this.$http.get('adminLog/list', { params: this.optQueryInfo });
         if (res.code !== 200) return this.$message.error(res.msg);
         this.optQueryInfo.total = res.data.total;
         this.optData = res.data.data;
       } else {
-        const { data: res } = await this.$http.get('adminlog/list', { params: this.loginQueryInfo });
+        const { data: res } = await this.$http.get('adminLog/list', { params: this.loginQueryInfo });
         this.loginQueryInfo.total = res.data.total;
         this.loginData = res.data.data;
       }

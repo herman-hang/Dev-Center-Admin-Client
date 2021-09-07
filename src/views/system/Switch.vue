@@ -65,6 +65,15 @@
             </el-form-item>
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="switchEdit">提交</el-button></el-form-item>
           </el-tab-pane>
+          <el-tab-pane label="用户开关" name="register_switch">
+            <el-form-item label="用户注册" prop="register_switch">
+              <el-radio-group v-model="switchForm.register_switch">
+                <el-radio label="1">开启</el-radio>
+                <el-radio label="0">关闭</el-radio>
+              </el-radio-group>
+              <el-form-item><el-button type="primary" icon="el-icon-edit" @click="switchEdit">提交</el-button></el-form-item>
+            </el-form-item>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>
@@ -88,7 +97,8 @@ export default {
         qqlogin_switch: [{ required: true, message: '请选择QQ登录开关！', trigger: 'change' }],
         weixinlogin_switch: [{ required: true, message: '请选择微信登录开关！', trigger: 'change' }],
         sinalogin_switch: [{ required: true, message: '请选择微博登录开关！', trigger: 'change' }],
-        giteelogin_switch: [{ required: true, message: '请选择Gitee登录开关！', trigger: 'change' }]
+        giteelogin_switch: [{ required: true, message: '请选择Gitee登录开关！', trigger: 'change' }],
+        register_switch: [{ required: true, message: '请选择用户注册开关！', trigger: 'change' }]
       }
     };
   },

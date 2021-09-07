@@ -98,7 +98,7 @@ export default {
      */
     async menuList() {
       const { data: res } = await this.$http.get('home');
-      if (res.code !== 200) return this.$message.error(res.msg);
+      if (res.code !== 200) return;
       this.treeMenuList = res.data;
     },
     /**

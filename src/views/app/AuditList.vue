@@ -283,14 +283,12 @@ export default {
         await this.$http.put('app/edit', this.auditForm);
         // 审核通过请求
         const { data: result } = await this.$http.put('app/pass', { id: this.auditForm.id });
-        setTimeout(() => {
-          // 关闭加载图标
-          this.fullscreenLoading = false;
-          if (result.code !== 200) return this.$message.error(result.msg);
-          this.$message.success(result.msg);
-          // 刷新列表
-          this.appAuditList();
-        }, 2000);
+        // 关闭加载图标
+        this.fullscreenLoading = false;
+        if (result.code !== 200) return this.$message.error(result.msg);
+        this.$message.success(result.msg);
+        // 刷新列表
+        this.appAuditList();
       });
     },
 
