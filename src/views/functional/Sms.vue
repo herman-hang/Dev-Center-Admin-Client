@@ -9,7 +9,7 @@
     <!-- 卡片视图 -->
     <el-card>
       <div slot="header" class="clearfix"><strong>短信配置</strong></div>
-      <el-form :model="smsForm" :rules="smsFormRules" ref="smsFormRef" label-width="100px">
+      <el-form :model="smsForm" :rules="smsFormRules" ref="smsFormRef" label-width="110px">
         <el-tabs v-model="activeName" tab-position="left">
           <el-tab-pane label="ThinkAPI短信" name="think">
             <el-form-item label="AppCode" prop="app_code"><el-input placeholder="请输入AppCode" v-model="smsForm.app_code"></el-input></el-form-item>
@@ -20,6 +20,12 @@
                 <el-button size="small" @click="testSend('think')">发送测试</el-button>
               </div>
             </el-form-item>
+            <!-- 提交按钮 -->
+            <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
+          </el-tab-pane>
+          <el-tab-pane label="ThinkAPI短信模板" name="think_sms_config">
+            <el-form-item label="绑定手机模板ID" prop="bind_mobile"><el-input placeholder="请输入签名" v-model="smsForm.bind_mobile"></el-input></el-form-item>
+            <el-form-item label="解除手机模板ID" prop="relieve_mobile"><el-input placeholder="请输入签名" v-model="smsForm.relieve_mobile"></el-input></el-form-item>
             <!-- 提交按钮 -->
             <el-form-item><el-button type="primary" icon="el-icon-edit" @click="submit">提交</el-button></el-form-item>
           </el-tab-pane>
