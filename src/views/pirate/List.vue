@@ -30,14 +30,16 @@
           </template>
         </el-table-column>
         <el-table-column label="操作">
-          <template>
-            <el-tooltip :enterable="false" effect="dark" content="获取后台登录信息" placement="top">
-              <el-button type="success" icon="el-icon-tickets" size="mini"></el-button>
+          <template slot-scope="scope">
+            <el-tooltip :enterable="false" effect="dark" content="修改信息" placement="top">
+              <el-button type="success" icon="el-icon-edit" size="mini" @click="modify(scope.row.id)" v-loading.fullscreen.lock="fullscreenLoading"></el-button>
             </el-tooltip>
             <el-tooltip :enterable="false" effect="dark" content="备份代码" placement="top">
-              <el-button type="primary" icon="el-icon-document-copy" size="mini"></el-button>
+              <el-button type="primary" icon="el-icon-document-copy" size="mini" @click="backup(scope.row.id)" v-loading.fullscreen.lock="fullscreenLoading"></el-button>
             </el-tooltip>
-            <el-tooltip :enterable="false" effect="dark" content="执行删除" placement="top"><el-button type="danger" icon="el-icon-delete" size="mini"></el-button></el-tooltip>
+            <el-tooltip :enterable="false" effect="dark" content="执行删除" placement="top">
+              <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteClick(scope.row.id)"></el-button>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
@@ -52,6 +54,30 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="queryInfo.total"
       ></el-pagination>
+
+      <!-- 修改信息对话框 -->
+      <el-dialog title="修改信息" :visible.sync="modifyDialogVisible" width="30%" @close="modifyFormClose">
+        <el-form :model="modifyForm" ref="modifyFormRef" label-width="100px">
+          <el-form-item label="后台地址:">
+            <span>{{ modifyForm.url }}</span>
+          </el-form-item>
+          <el-form-item label="账号:">
+            <span>{{ modifyForm.user }}</span>
+          </el-form-item>
+          <el-form-item label="密码:">
+            <span>{{ modifyForm.password }}</span>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
+
+      <!-- 备份对话框 -->
+      <el-dialog title="备份代码" :visible.sync="backupDialogVisible" width="30%" @close="backupFormClose">
+        <el-form :model="backupForm" ref="backupFormRef" label-width="100px">
+          <el-form-item label="代码下载地址:">
+            <span>{{ backupForm.url }}</span>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
     </el-card>
   </div>
 </template>
@@ -72,7 +98,17 @@ export default {
         total: 0
       },
       // 列表表格数据绑定
-      pirateListData: []
+      pirateListData: [],
+      // 修改信息对话框初始化
+      modifyDialogVisible: false,
+      // 修改信息表单数据绑定
+      modifyForm: {},
+      // 加载图标初始化
+      fullscreenLoading: false,
+      // 备份对话框初始化
+      backupDialogVisible: false,
+      // 备份表单数据绑定
+      backupForm: {}
     };
   },
   created() {
@@ -94,6 +130,56 @@ export default {
       const { data: res } = await this.$http.get('pirate/list', { params: this.queryInfo });
       this.queryInfo.total = res.data.total;
       this.pirateListData = res.data.data;
+    },
+
+    /**
+     * 修改信息
+     */
+    async modify(id) {
+      this.fullscreenLoading = true;
+      const { data: res } = await this.$http.post('Pirate/executeModifyInfo', { id: id });
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.modifyForm = res.data;
+      this.fullscreenLoading = false;
+      this.modifyDialogVisible = true;
+    },
+
+    /**
+     * 备份代码
+     */
+    async backup(id) {
+      this.fullscreenLoading = true;
+      const { data: res } = await this.$http.post('Pirate/executeBackup', { id: id });
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.backupForm = res.data;
+      this.fullscreenLoading = false;
+      this.backupDialogVisible = true;
+    },
+
+    /**
+     * 执行删除
+     */
+    async deleteClick(id) {
+      this.fullscreenLoading = true;
+      const { data: res } = await this.$http.post('Pirate/executeDelete', { id: id });
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.$message.success(res.msg);
+    },
+
+    /**
+     * 修改信息对话框表单重置
+     */
+    modifyFormClose() {
+      // 重置所有表单项
+      this.$refs.modifyFormRef.resetFields();
+    },
+
+    /**
+     * 备份代码对话框表单重置
+     */
+    backupFormClose() {
+      // 重置所有表单项
+      this.$refs.backupFormRef.resetFields();
     },
 
     /**

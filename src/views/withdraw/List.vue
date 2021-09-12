@@ -375,12 +375,10 @@ export default {
       // 显示加载图标
       this.fullscreenLoading = true;
       const { data: res } = await this.$http.put('withdraw/pass', { id: this.auditForm.id });
-      setTimeout(() => {
-        // 关闭加载图标
-        this.fullscreenLoading = false;
-        if (res.code !== 200) return this.$message.error(res.msg);
-        this.$message.success(res.msg);
-      }, 2000);
+      // 关闭加载图标
+      this.fullscreenLoading = false;
+      if (res.code !== 200) return this.$message.error(res.msg);
+      this.$message.success(res.msg);
       // 刷新列表
       this.audit('1');
     },
