@@ -133,7 +133,7 @@ const routes = [{
   redirect: '/404'
 }]
 const router = new VueRouter({
-  mode: 'history', //去掉url中的'#'号
+  mode: 'hash',
   routes
 })
 //判断登录状态，挂载路由导航守卫 to:将要访问的路径  from:从那个路径跳转而来  next:放行
