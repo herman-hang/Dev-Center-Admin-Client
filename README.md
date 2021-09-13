@@ -17,7 +17,7 @@ npm run serve
 ```
 npm run build
 ```
-编译完项目好即可将dist文件夹的项目进行部署发布。
+编译完项目后即可将dist文件夹进行部署上线。
 
 ## 演示站
 开发者中心后台演示站：http://admin.vividc.net/
