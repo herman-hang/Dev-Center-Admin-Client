@@ -41,8 +41,8 @@ export default {
     return {
       // 表单绑定数据对象
       loginForm: {
-        user: 'admin',
-        password: '123456',
+        user: '',
+        password: '',
         code: ''
       },
       // 第三方登录绑定
