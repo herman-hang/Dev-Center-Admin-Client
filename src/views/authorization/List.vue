@@ -88,6 +88,8 @@
           <el-form-item label="授权域名1" prop="domain_one"><el-input placeholder="请输入授权域名1" v-model="addForm.domain_one"></el-input></el-form-item>
           <el-form-item label="授权域名2" prop="domain_two"><el-input placeholder="请输入授权域名2" v-model="addForm.domain_two"></el-input></el-form-item>
           <el-form-item label="授权域名3" prop="domain_tree"><el-input placeholder="请输入授权域名3" v-model="addForm.domain_tree"></el-input></el-form-item>
+          <el-form-item label="绑定的插件" prop="auth_plug"><el-input placeholder="请输入绑定的插件ID,多个ID用英文逗号分开" v-model="addForm.auth_plug"></el-input></el-form-item>
+          <el-form-item label="绑定的模板" prop="auth_temp"><el-input placeholder="请输入绑定的插件ID,多个ID用英文逗号分开" v-model="addForm.auth_temp"></el-input></el-form-item>
           <el-form-item label="用户ID" prop="user_id"><el-input placeholder="请输入绑定的用户ID" v-model="addForm.user_id"></el-input></el-form-item>
           <el-form-item label="状态" prop="status">
             <el-select v-model="addForm.status" placeholder="请选择状态">
@@ -119,6 +121,8 @@
           <el-form-item label="授权域名1" prop="domain_one"><el-input placeholder="请输入授权域名1" v-model="editForm.domain_one"></el-input></el-form-item>
           <el-form-item label="授权域名2" prop="domain_two"><el-input placeholder="请输入授权域名2" v-model="editForm.domain_two"></el-input></el-form-item>
           <el-form-item label="授权域名3" prop="domain_tree"><el-input placeholder="请输入授权域名3" v-model="editForm.domain_tree"></el-input></el-form-item>
+          <el-form-item label="绑定的插件" prop="auth_plug"><el-input placeholder="请输入绑定的插件ID,多个ID用英文逗号分开" v-model="editForm.auth_plug"></el-input></el-form-item>
+          <el-form-item label="绑定的模板" prop="auth_temp"><el-input placeholder="请输入绑定的插件ID,多个ID用英文逗号分开" v-model="editForm.auth_temp"></el-input></el-form-item>
           <el-form-item label="用户ID" prop="user_id"><el-input placeholder="请输入绑定的用户ID" v-model="editForm.user_id"></el-input></el-form-item>
           <el-form-item label="授权服务" prop="level">
             <el-select v-model="editForm.level" placeholder="请选择授权服务">
@@ -169,6 +173,8 @@ export default {
         domain_one: '',
         domain_two: '',
         domain_tree: '',
+        auth_plug: '',
+        auth_temp: '',
         status: '',
         level: ''
       },

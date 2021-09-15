@@ -117,7 +117,7 @@ export default {
     authConfigEdit() {
       this.$refs.authConfigRef.validate(async valid => {
         if (!valid) return;
-        const { data: res } = await this.$http.post('authorization/authconfigedit', this.authConfigForm);
+        const { data: res } = await this.$http.put('authorization/authconfigedit', this.authConfigForm);
         if (res.code !== 200) return this.$message.error(res.msg);
         this.$message.success(res.msg);
         this.authConfig();
